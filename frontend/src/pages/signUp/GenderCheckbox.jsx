@@ -1,6 +1,6 @@
 import React from 'react'
 
-const GenderCheckbox = () => {
+const GenderCheckbox = ({loading,input, setInput}) => {
   return (
     <div className='flex mt-4'>
 
@@ -9,7 +9,10 @@ const GenderCheckbox = () => {
           <span className="label-text text-gray-300">
             Male
           </span>
-          <input type="radio" name="radio-6" className="radio radio-warning" />
+          <input type="radio" name="radio-6" className="radio radio-warning"
+          disabled={loading}
+          value={"male"}
+          onChange={(e) => setInput({...input, gender: e.target.value})} />
         </label>
       </div>
 
@@ -18,7 +21,11 @@ const GenderCheckbox = () => {
           <span className="label-text text-gray-300">
             Female
           </span>
-          <input type="radio" name="radio-6" className="radio radio-warning" />
+          <input type="radio" name="radio-6" className="radio radio-warning"
+          value={"female"}
+          disabled={loading}
+          onChange={(e) => setInput({...input, gender: e.target.value})}
+          />
         </label>
       </div>
 
