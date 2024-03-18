@@ -3,7 +3,7 @@ import useConversation from '../../zustand/useConversation'
 import { useAuthContext } from '../../context/AuthContext'
 import { useSocketContext } from '../../context/SocketContext'
 
-const Conversation = ({ conversation, emoji, lastIdx }) => {
+const Conversation = ({ conversation, emoji, lastIdx, setSlide }) => {
   const { selectedConversation, setSelectedConversation } = useConversation()
 
   const isSelected = selectedConversation?._id === conversation._id
@@ -13,9 +13,14 @@ const Conversation = ({ conversation, emoji, lastIdx }) => {
 
   const isOnline = onlineUsers.includes(conversation._id)
 
+  const handleClick = () => {
+    setSelectedConversation(conversation)
+    setSlide(false)
+  }
+
   return (
     <>
-    <div className={`flex gap-2 items-center hover:bg-yellow-500 rounded p-2 py-1 cursor-pointer ${isSelected && 'bg-yellow-500'}`} onClick={() => setSelectedConversation(conversation)}>
+    <div className={`flex gap-2 items-center hover:bg-yellow-500 rounded p-2 py-1 cursor-pointer ${isSelected && 'bg-yellow-500'}`} onClick={handleClick}>
       <div className={`avatar ${isOnline ? 'online' : ''}`}>
         <div className='w-12 rounded-full'>
           <img src={conversation.profilePicture} alt="user avatar"/>

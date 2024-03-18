@@ -4,10 +4,11 @@ import useLogout from '../../hooks/useLogout'
 const Logout = () => {
   const {logout, loading} = useLogout()
   return (
-    <div className="mt-auto ">
+    <div className="mt-5">
       {!loading ? (
-        <button onClick={logout} className="mt-auto">
+        <button onClick={logout} className="mt-auto flex gap-2 items-center">
       <SlLogout className="text-3xl text-gray-300 cursor-pointer" />
+      Logout
     </button>
       ):
       (
